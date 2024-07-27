@@ -9,3 +9,4 @@ transformers==4.43.3
 accelerate==0.33.0
 flask==3.0.3
 langid==1.1.6
+SentencePiece==0.2.0
