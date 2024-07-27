@@ -60,4 +60,4 @@ def translator():
 def get_langs():
     return dumps(model.get_langs(), indent=4, ensure_ascii=False), {"Content-Type": "application/json; charset=utf-8"}
 
-routes.run()
+routes.run(port=80)
