@@ -1,0 +1,118 @@
+openapi: 3.0.0
+info:
+    title: VerbiAI API
+    description: The Translation API allows you to translate text between different languages using the MBart model from Hugging Face's Transformers library. It supports automatic language detection and can handle translations from various source languages to a specified target language.
+    version: 1.0.0
+tags:
+    - name: translation
+      description: Operations related to text translation
+paths:
+    /translator:
+        post:
+            tags:
+                - translation
+            summary: Translates text from one language to another
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                query:
+                                    type: string
+                                    description: Text to be translated
+                                    example: "Hello, world!"
+                                query.source_language:
+                                    type: string
+                                    description: Language code of the source text
+                                    example: "en"
+                                query.target_language:
+                                    type: string
+                                    description: Language code of the target language
+                                    example: "ar"
+                            required:
+                                - query
+                                - query.target_language
+            responses:
+                '200':
+                    description: Successful translation response
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    success:
+                                        type: boolean
+                                    sentences:
+                                        type: object
+                                        properties:
+                                            trans:
+                                                type: string
+                                                description: Translated text
+                                            original:
+                                                type: string
+                                                description: Original text
+                                            detection_lang:
+                                                type: string
+                                                description: Detected language (optional)
+                                required:
+                                    - success
+                                    - sentences
+                '400':
+                    description: Bad request error
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    success:
+                                        type: boolean
+                                    Exception:
+                                        type: object
+                                        properties:
+                                            code:
+                                                type: integer
+                                            ErrorMsg:
+                                                type: string
+                                required:
+                                    - success
+                                    - Exception
+    /get_langs:
+        get:
+            tags:
+                - language
+            summary: Retrieves a list of available languages
+            responses:
+                '200':
+                    description: A list of languages
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    langs:
+                                        type: array
+                                        items:
+                                            type: string
+                                        description: List of available language codes
+                                required:
+                                    - langs
+                '500':
+                    description: Internal server error
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    success:
+                                        type: boolean
+                                    Exception:
+                                        type: object
+                                        properties:
+                                            code:
+                                                type: integer
+                                            ErrorMsg:
+                                                type: string
+                                required:
+                                    - success
+                                    - Exception
