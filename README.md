@@ -15,7 +15,7 @@ The Translation API allows you to translate text between different languages usi
 
    ```bash
    git clone https://github.com/dev-virous/VerbiAI.git
-   cd translator-api
+   cd VerbiAI
    ```
 2. **Install the dependencies:**
    ```bash
