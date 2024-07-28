@@ -7,6 +7,7 @@ The Translation API allows you to translate text between different languages usi
 - Translates text from one language to another.
 - Detects the source language if not provided.
 - Returns translations in a structured JSON format.
+- Utilizes AI models from Facebook for high-quality translations.
 
 ## Installation
 
